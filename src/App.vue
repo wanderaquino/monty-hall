@@ -1,20 +1,15 @@
 <template>
     <div id="app">
         <h1>Monty Hall Problem</h1>
-        <div class="door-area">
-            <Door/>
-            <Door/>
-            <Door/>
-        </div>
+        <DoorArea/>
     </div>
 </template>
 
 <script>
-
-import Door from "./components/Door"
+import DoorArea from "./components/DoorArea";
 
 export default {
-    components: {Door}
+    components: {DoorArea}
 }
 </script>
 
