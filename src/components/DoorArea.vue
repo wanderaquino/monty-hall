@@ -1,12 +1,16 @@
 <template>
     <div class="door-area">
-
+        <Door/>
+        <Door/>
+        <Door/>
     </div>
 </template>
 
 <script>
-export default {
+import Door from "./Door"
 
+export default {
+    components: {Door}
 }
 </script>
 
