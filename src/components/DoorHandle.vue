@@ -1,10 +1,12 @@
 <template>
-  <div class="door-handle"></div>
+  <div class="door-handle" :class="{selected: selected}"></div>
 </template>
 
 <script>
 export default {
-
+    props: {
+    selected: {type: Boolean}
+    }
 }
 </script>
 
@@ -12,7 +14,6 @@ export default {
     :root {
         --handle-door-bg: sienna;
     }
-
     .door-handle {
         height: 25px;
         width: 25px;
