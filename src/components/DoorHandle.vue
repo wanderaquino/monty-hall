@@ -15,11 +15,13 @@ export default {
         --handle-door-bg: sienna;
     }
     .door-handle {
+        position:absolute;
         height: 25px;
         width: 25px;
-        margin-left: 5px;
+        margin-left: 10px;
         border-radius: 15px;
         background-color: var(--handle-door-bg);
+        align-self: center;
     }
 
     .selected {
