@@ -34,13 +34,4 @@ export default {
         color: gray;
         text-align: center;
     }
-
-    .door-area {
-        display: flex;
-        flex-wrap: wrap;
-        height: auto;
-        align-items: center;
-        justify-content: center;
-    }
-
 </style>
