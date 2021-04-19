@@ -1,6 +1,7 @@
 <template>
-    <div class="door">
-        <DoorHandle/>
+
+    <div class="door" @click="e => doorHandleOpen(e)" :class="{selected: selected}">
+        <DoorHandle :selected="selected" />
     </div>
 
 </template>
@@ -9,10 +10,28 @@
 import DoorHandle from "./DoorHandle"
 
 export default {
-    components: {DoorHandle},
-    props: {
-        selected: {type: Boolean}
-    }
+    data: function () {
+            return {
+                selected: false,
+                gifted: false,
+                open: false
+            }
+        },
+    methods: {
+        setSelected () {
+            this.selected = !this.selected;
+        },
+        doorHandleOpen(e) {
+            if (e.target.classList.contains('door-handle')) {
+                this.open = true;
+                console.log("Porta aberta...");
+            } else {
+                this.setSelected();
+            }
+        }
+    },
+    computed: {},
+    components: {DoorHandle}
 }
 </script>
 
