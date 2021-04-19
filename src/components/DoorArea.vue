@@ -16,7 +16,7 @@ export default {
 
 <style>
     .door-area {
-        display: flexbox;
+        display: flex;
         height: 40%;
         align-items: center;
         justify-content: center;
