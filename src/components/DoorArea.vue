@@ -1,8 +1,8 @@
 <template>
     <div class="door-area">
-        <Door number ="1" :gifted = "true"/>
-        <Door number ="2" :gifted = "false"/>
-        <Door number ="3" :gifted = "false"/>
+        <div v-for="i in doorsAmount" :key=i>
+            <Door :number =i :gifted = "i === giftedDoor"/>
+        </div>
     </div>
 </template>
 
@@ -10,6 +10,12 @@
 import Door from "./Door"
 
 export default {
+    name: "DoorArea",
+    props: {
+        doorsAmount: {type: Number},
+        giftedDoor: {type: Number},
+        gifted: {type: Boolean}
+    },
     components: {Door}
 }
 </script>
