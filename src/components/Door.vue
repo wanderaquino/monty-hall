@@ -1,9 +1,9 @@
 <template>
 
-    <div class="door-frame">
-        <div class="door" @click="e => doorHandleOpen(e)" :gifted="false" :class="{opened: open}">
-            <div class="door-number">{{number}}</div>
-            <div class="door-handle"></div>
+    <div class="door-frame" :class="{ 'selected-frame': selected && !open}" >
+        <div class="door" @click="e => setSelected(e)" :gifted="gifted" :class="{'door-open': open}">
+            <div class="door-number" :class="{'selected-number': selected}" >{{number}}</div>
+            <div class="door-handle" @click="e => doorHandleOpen(e)" :class="{'selected-handle': selected}"></div>
         </div>
         <Gift v-if="gifted === true && open === true"/>
     </div>
@@ -50,10 +50,12 @@ export default {
     :root {
         --frame-door: 5px solid sienna;
         --color-selected: greenyellow;
+        --selected-border: solid 5px greenyellow;
         --handle-door-bg: brown;
     }
 
     .door-frame{
+        display: flex;
         position: relative;
         height: 220px;
         width: 140px;
@@ -66,6 +68,8 @@ export default {
         margin-left: 12px;
 
         box-sizing: border-box;
+        align-items: flex-end;
+        justify-content: center;
     }
 
     .door {
@@ -77,6 +81,7 @@ export default {
         height: 100%;
         background-color: chocolate;
     }
+
     .door-number {
         position: absolute;
         font-size: 2rem;
@@ -95,12 +100,27 @@ export default {
         left: 0;
     }
 
-    .selected {
+    .selected-frame {
+        border-left: var(--selected-border);
+        border-right: var(--selected-border);
+        border-top: var(--selected-border);
+    }
+
+    .selected-handle {
         background-color: var(--color-selected);
     }
 
-    .opened {
-        background: linear-gradient(22deg, rgba(97,92,92,1) 22%, rgba(23,25,25,1) 56%);
+    .selected-number {
+        color: var(--color-selected);
+    }
+
+    .door-open {
+        background: #0009;
+    }
+
+    .door-open .door-handle,
+    .door-open .door-number {
+        display: none;
     }
 
 </style>
