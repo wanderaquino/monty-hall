@@ -23,7 +23,7 @@ export default {
 <style>
     .door-area {
         display: flex;
-        height: 40%;
+        height: auto;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
