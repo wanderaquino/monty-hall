@@ -1,34 +1,39 @@
 <template>
 
-    <div class="door" @click="e => doorHandleOpen(e)">
-        <div class="door-frame-up" :class="{selected: selected}"></div>
-        <div class="door-frame-right" :class="{selected: selected}"></div>
-        <div class="door-frame-left" :class="{selected: selected}"></div>
-        <div class="door-frame-floor"></div>
-        <DoorHandle :selected="selected" />
+    <div class="door-frame">
+        <div class="door" @click="e => doorHandleOpen(e)" :gifted="false" :class="{opened: open}">
+            <div class="door-number">{{number}}</div>
+            <div class="door-handle"></div>
+        </div>
+        <Gift v-if="gifted === true && open === true"/>
     </div>
-
 
 </template>
 
 <script>
-import DoorHandle from "./DoorHandle"
+import Gift from "./Gift";
 
 export default {
     data: function () {
             return {
                 selected: false,
-                gifted: false,
                 open: false
             }
         },
+    props: {
+        number: {},
+        gifted: {type: Boolean},
+    },
     methods: {
         setSelected () {
             this.selected = !this.selected;
         },
+        setOpened () {
+            this.open = !this.open;
+        },
         doorHandleOpen(e) {
             if (e.target.classList.contains('door-handle')) {
-                this.open = true;
+                this.setOpened();
                 console.log("Porta aberta...");
             } else {
                 this.setSelected();
@@ -36,62 +41,58 @@ export default {
         }
     },
     computed: {},
-    components: {DoorHandle}
+    components: {Gift}
 }
 </script>
 
 <style>
 
     :root {
-        --frame-door-color: sienna;
-        --floor-door: 10px solid gray;
+        --frame-door: 5px solid sienna;
         --color-selected: greenyellow;
+        --handle-door-bg: brown;
     }
 
-    .door {
+    .door-frame{
         position: relative;
-        display: flex;
-        width: 140px;
         height: 220px;
-        background-color: peru;
-        justify-content: space-between;
-        margin: 7px 7px 7px 0;
+        width: 140px;
+        
+        border-left: var(--frame-door);
+        border-right: var(--frame-door);
+        border-top: var(--frame-door);
+        border-bottom: 10px solid gray;
+        margin-bottom: 20px;
+        margin-left: 12px;
+
         box-sizing: border-box;
     }
 
-    .door-frame-up,
-    .door-frame-floor{
+    .door {
+        display: flex;
         position: absolute;
-        height: 5px;
+        justify-content: center;
+        top: 0;
         width: 100%;
-        background: var(--frame-door-color);
-    }
-
-    .door-frame-up{
-        align-self: flex-start;
-    }
-
-    .door-frame-floor {
-        background: gray !important;
-        height: 7px !important;
-        align-self: flex-end;
-    }
-
-
-    .door-frame-left,
-    .door-frame-right {
         height: 100%;
-        width: 5px;
-        background: var(--frame-door-color);
+        background-color: chocolate;
+    }
+    .door-number {
+        position: absolute;
+        font-size: 2rem;
+        color: whitesmoke;
+        font-weight: 700;
+    }
+
+    .door-handle {
+        position: absolute;
+        height: 25px;
+        width: 25px;
+        margin-left: 10px;
+        border-radius: 15px;
+        background-color: var(--handle-door-bg);
         align-self: center;
-    }
-
-    .door-frame-left {
-        justify-self:left;
-    }
-
-    .door-frame-right {
-        justify-self:right;
+        left: 0;
     }
 
     .selected {
@@ -99,7 +100,7 @@ export default {
     }
 
     .opened {
-        opacity: 40%;
+        background: linear-gradient(22deg, rgba(97,92,92,1) 22%, rgba(23,25,25,1) 56%);
     }
 
 </style>
