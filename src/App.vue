@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <h1>Monty Hall Problem</h1>
-        <DoorArea/>
+        <DoorArea :doorsAmount="doorsAmount" :giftedDoor="giftedDoor"/>
     </div>
 </template>
 
@@ -9,6 +9,14 @@
 import DoorArea from "./components/DoorArea";
 
 export default {
+    name: "App",
+    data: function () {
+        return {
+            started: false,
+            doorsAmount: 10,
+            giftedDoor: 7
+        }
+    },
     components: {DoorArea}
 }
 </script>
