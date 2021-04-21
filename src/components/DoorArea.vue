@@ -1,8 +1,8 @@
 <template>
     <div class="door-area">
-        <Door/>
-        <Door/>
-        <Door/>
+        <Door number ="1" :gifted = "false"/>
+        <Door number ="2" :gifted = "false"/>
+        <Door number ="3" :gifted = "false"/>
     </div>
 </template>
 
