@@ -1,6 +1,6 @@
 <template>
     <div class="door-area">
-        <Door number ="1" :gifted = "false"/>
+        <Door number ="1" :gifted = "true"/>
         <Door number ="2" :gifted = "false"/>
         <Door number ="3" :gifted = "false"/>
     </div>
